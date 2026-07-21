@@ -16,8 +16,14 @@ The diagrams are separated into different views to keep complex structures reada
 
 ## System Architecture
 
+<h2>Architecture Overview</h2>
+
 <p align="center">
-  <img src="./Architecture/UML%20Diagrams/arc-2.png" width="100%">
+  <img src="./Architecture/UML%20Diagrams/Arc-2.png" width="100%">
+</p>
+
+<p align="center">
+  <img src="./Architecture/Mermaid%20Diagrams/Arc-1.png" width="100%">
 </p>
 
 ## Architecture Documentation
