@@ -16,7 +16,7 @@ The diagrams are separated into different views to keep complex structures reada
 
 ## System Architecture
 
-<h2>Architecture Overview</h2>
+
 
 <p align="center">
   <img src="./Architecture/UML%20Diagrams/Arc-2.png" width="100%">
