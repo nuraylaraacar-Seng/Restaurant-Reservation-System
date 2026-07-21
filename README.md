@@ -107,25 +107,34 @@ The diagrams are separated into different views to keep complex structures reada
 The project follows a layered architecture approach with clear separation between responsibilities.
 
 ```
-src/main/java
+Restaurant-Reservation-System
 
-├── application
-│   ├── dto
-│   ├── mapper
-│   └── service
+├── Architecture
+│   ├── Mermaid Diagrams
+│   └── UML Diagrams
 │
-├── domain
-│   ├── entity
-│   ├── enums
-│   └── exception
+├── src/main/java
 │
-├── infrastructure
-│   ├── persistence
-│   └── security
+│   ├── application
+│   │   ├── dto
+│   │   ├── mapper
+│   │   └── service
+│   │
+│   ├── domain
+│   │   ├── entity
+│   │   ├── enums
+│   │   └── exception
+│   │
+│   ├── infrastructure
+│   │   ├── persistence
+│   │   └── security
+│   │
+│   └── presentation
+│       ├── controller
+│       └── advice
 │
-└── presentation
-    ├── controller
-    └── advice
+├── pom.xml
+└── README.md
 ```
 
 ## Layer Responsibilities
