@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tables Dashboard</title>
+</head>
+<body>
+
+<h1>Restaurant Tables</h1>
+
+<table border="1">
+    <tr>
+        <th>Table Number</th>
+        <th>Capacity</th>
+        <th>Status</th>
+    </tr>
+    <tr th:each="table : ${masaListesi}">
+        <td th:text="${table.tableNumber}"></td>
+        <td th:text="${table.capacity}"></td>
+        <td th:text="${table.active ? 'Active' : 'Inactive'}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
