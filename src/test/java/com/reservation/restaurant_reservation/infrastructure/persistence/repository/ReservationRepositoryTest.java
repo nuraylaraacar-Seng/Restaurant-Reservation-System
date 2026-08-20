@@ -54,7 +54,7 @@ class ReservationRepositoryTest {
         // 2. Metodu Test Et (Aynı saatte başka rezervasyon var mı?)
         List<Reservation> conflicts = reservationRepository.findConflictingForUpdate(
                 testTable.getId(),
-                startTime.plusMinutes(30), // örneğin 20:30'da (çakışan saat) deneme not:pesismistic_lock ile onu önlüyorduk
+                startTime.plusMinutes(30), // örneğin 20:30'da (çakışan saat) deneme not:pesismistic_lock ile onu önlüyordum
                 endTime.plusMinutes(30),   // 22:30'a kadar
                 ReservationStatus.CANCELLED
         );

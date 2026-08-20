@@ -75,7 +75,8 @@ public class ReservationService {
         return reservationMapper.toResponse(savedReservation);
     }
 
-    // Kendi rezervasyonlarını listeleme - önceden hiç yoktu.
+    // Kendi rezervasyonlarını listeleme
+    @Transactional(readOnly = true)
     public List<ReservationResponse> getMyReservations() {
         Long userId = SecurityUtils.getCurrentUserId();
         List<Reservation> reservations = reservationRepository.findByUserId(userId);

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller // RestController kulandmadım, sadece Controller kullandım!
+@Controller // RestController kulanmadım, sadece Controller kullandım!
 @RequiredArgsConstructor
 public class TableWebController {
 
@@ -17,7 +17,7 @@ public class TableWebController {
         // veriyi  Backend'den alıp "masaListesi" adıyla HTML'e yolluyoruz
         model.addAttribute("masaListesi", tableService.getAllTables());
 
-        // Bu, templates klasöründeki tables.html dosyanın adıdır.
+        // Bu, templates klasöründeki tables.html dosyanın adıdır(frontend deki).
         return "tables";
     }
 }
