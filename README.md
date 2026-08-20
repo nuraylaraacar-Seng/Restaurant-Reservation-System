@@ -12,6 +12,7 @@ The main goal of this project is to design a maintainable backend system while a
 <img width="924" height="467" alt="Ekran görüntüsü 2026-08-20 185211" src="https://github.com/user-attachments/assets/a6e2c7f5-81fa-4bdc-93ee-6fa7fde2a51f" />
 
 
+<img width="909" height="504" alt="Ekran görüntüsü 2026-08-20 185223" src="https://github.com/user-attachments/assets/7ad210b8-12a5-4c5d-8f82-8c4320d178d3" />
 
 
 
