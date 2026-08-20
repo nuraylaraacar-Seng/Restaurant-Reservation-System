@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "http://localhost:8081/api";
 
 // Backend'in ErrorResponse formatı: { timestamp, status, error, message }
 // Bu fonksiyon her istekte token'ı otomatik ekliyor ve hata mesajını

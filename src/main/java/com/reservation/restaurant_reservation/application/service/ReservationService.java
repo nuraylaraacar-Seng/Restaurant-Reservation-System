@@ -24,6 +24,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReservationService {
 
+    private static final int AUTO_CONFIRM_GUEST_LIMIT = 6;
+
     private final ReservationRepository reservationRepository;
     private final TableRepository tableRepository;
     private final UserRepository userRepository;
@@ -35,7 +37,6 @@ public class ReservationService {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Kullanıcı bulunamadı."));
-
 
         RestaurantTable table = tableRepository.findByIdForUpdate(request.getTableId())
                 .orElseThrow(() -> new ResourceNotFoundException("Masa bulunamadı."));
@@ -55,6 +56,11 @@ public class ReservationService {
             throw new ReservationConflictException("Seçilen saat aralığında bu masa doludur.");
         }
 
+
+        ReservationStatus initialStatus = request.getGuestCount() > AUTO_CONFIRM_GUEST_LIMIT
+                ? ReservationStatus.PENDING
+                : ReservationStatus.CONFIRMED;
+
         Reservation reservation = Reservation.builder()
                 .user(user)
                 .table(table)
@@ -62,10 +68,33 @@ public class ReservationService {
                 .endTime(request.getEndTime())
                 .guestCount(request.getGuestCount())
                 .notes(request.getNotes())
-                .status(ReservationStatus.CONFIRMED)
+                .status(initialStatus)
                 .build();
 
         Reservation savedReservation = reservationRepository.save(reservation);
         return reservationMapper.toResponse(savedReservation);
+    }
+
+    // Kendi rezervasyonlarını listeleme - önceden hiç yoktu.
+    public List<ReservationResponse> getMyReservations() {
+        Long userId = SecurityUtils.getCurrentUserId();
+        List<Reservation> reservations = reservationRepository.findByUserId(userId);
+        return reservationMapper.toResponseList(reservations);
+    }
+
+    @Transactional
+    public ReservationResponse cancelReservation(Long reservationId) {
+        Long userId = SecurityUtils.getCurrentUserId();
+
+        Reservation reservation = reservationRepository.findByIdForUpdate(reservationId)
+                .orElseThrow(() -> new ResourceNotFoundException("Rezervasyon bulunamadı."));
+
+        if (!reservation.getUser().getId().equals(userId)) {
+            throw new BusinessException("Bu rezervasyonu iptal etme yetkiniz yok.");
+        }
+
+        reservation.cancel();
+        Reservation updated = reservationRepository.save(reservation);
+        return reservationMapper.toResponse(updated);
     }
 }
