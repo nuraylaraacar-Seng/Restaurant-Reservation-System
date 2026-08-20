@@ -1,5 +1,7 @@
 # Restaurant Reservation System
 
+<img width="949" height="935" alt="Ekran görüntüsü 2026-08-20 145753" src="https://github.com/user-attachments/assets/b28cc9e8-ab4a-42f0-bc5d-8346d08177db" />
+
 A backend-focused restaurant reservation system developed with **Java Spring Boot**.
 The project provides user authentication, table management, reservation creation and conflict prevention with a clean layered architecture approach.
 
