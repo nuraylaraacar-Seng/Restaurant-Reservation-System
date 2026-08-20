@@ -1,5 +1,6 @@
 package com.reservation.restaurant_reservation.infrastructure.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -35,11 +36,14 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    @Value("${app.cors.allowed-origin}")
+    private String allowedOrigin;
+
     // Prod'a çıkarken allowedOrigins'i gerçek domain ile değiştireceğim
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+        configuration.setAllowedOrigins(List.of(allowedOrigin));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
@@ -92,8 +96,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/tables")
                         .permitAll()
 
-                        // Masa yönetimi artık sadece ADMIN - önceden herhangi bir
-                        // giriş yapmış CUSTOMER da masa silebiliyordu.
+
                         .requestMatchers(HttpMethod.POST, "/api/tables")
                         .hasRole("ADMIN")
 
