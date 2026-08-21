@@ -146,3 +146,187 @@ Restaurant-Reservation-System
 │
 ├── pom.xml
 └── README.md
+Layer Responsibilities
+Domain Layer
+Contains the core business models and rules.
+Includes:
+
+Entities
+
+Enums
+
+Domain exceptions
+
+Business validations
+
+Application Layer
+Handles application workflows.
+Includes:
+
+DTO objects
+
+Service classes
+
+Entity mapping
+
+Infrastructure Layer
+Contains technical implementations.
+Includes:
+
+Database repositories
+
+JWT configuration
+
+Security configuration
+
+Presentation Layer
+Responsible for external communication.
+Includes:
+
+REST Controllers
+
+Exception handling
+
+Web endpoints
+
+Reservation Conflict Prevention
+One of the main challenges of reservation systems is preventing double booking.
+
+This project handles concurrent reservation requests by using database locking mechanisms.
+
+Implementation:
+
+Pessimistic Lock
+
+Transaction management
+
+Conflict checking before reservation creation
+
+Reservation flow:
+
+Plaintext
+User Request
+      |
+      v
+Check Table Availability
+      |
+      v
+Lock Database Record
+      |
+      v
+Check Existing Reservations
+      |
+      v
+Create Reservation
+This prevents multiple users from reserving the same table at the same time.
+
+Security Design
+Authentication flow:
+
+Plaintext
+User
+ |
+ | Login Request
+ v
+Auth Controller
+ |
+ v
+Auth Service
+ |
+ v
+JWT Generation
+ |
+ v
+Access Token
+JWT tokens are generated using RSA key pairs:
+
+Private key → Token signing
+
+Public key → Token verification
+
+The application uses stateless authentication without server-side sessions.
+
+Database Model
+Main entities:
+
+Plaintext
+User
+ |
+ | 1:N
+Reservation
+ |
+ | N:1
+RestaurantTable
+Entities:
+
+User
+
+RestaurantTable
+
+Reservation
+
+Common fields such as:
+
+id
+
+createdAt
+
+updatedAt
+
+are managed through a shared BaseEntity.
+
+API Documentation
+Swagger UI is available for testing and exploring REST endpoints.
+
+Main endpoints:
+
+Authentication
+HTTP
+POST /api/auth/register
+POST /api/auth/login
+Tables
+HTTP
+GET    /api/tables
+POST   /api/tables
+PUT    /api/tables/{id}
+DELETE /api/tables/{id}
+Reservations
+HTTP
+POST /api/reservations
+Testing
+Unit tests are implemented using:
+
+JUnit 5
+
+Mockito
+
+Test scenarios include:
+
+Successful reservation creation
+
+Reservation conflict detection
+
+Missing table validation
+
+Capacity validation
+
+Example:
+
+Java
+createReservation_ShouldReturnResponse_WhenEverythingIsValid()
+createReservation_ShouldThrowConflictException_WhenTableIsAlreadyBooked()
+createReservation_ShouldThrowBusinessException_WhenCapacityIsInsufficient()
+Project Structure
+Plaintext
+restaurant-reservation
+
+├── application
+├── domain
+├── infrastructure
+├── presentation
+├── resources
+└── tests
+Author
+Nuray Lara Açar
+
+Software Engineering Student | Backend Developer focused on Java & Spring Boot
