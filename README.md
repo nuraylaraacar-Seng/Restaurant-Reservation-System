@@ -112,7 +112,7 @@ The diagrams are separated into different views to keep complex structures reada
 * Swagger / OpenAPI
 
 ---
-
+```text
 # Architecture Design
 
 The project follows a layered architecture approach with clear separation between responsibilities.
