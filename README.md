@@ -31,6 +31,10 @@ The diagrams are separated into different views to keep complex structures reada
   <img src="./Architecture/Mermaid%20Diagrams/Arc-1.png" width="100%">
 </p>
 
+<img width="6219" height="3033" alt="Arc-2-v2 drawio (1)" src="https://github.com/user-attachments/assets/d41316a9-5f09-481a-bb31-090a3622c919" />
+
+
+
 ## Architecture Documentation
 
 <p align="center">
