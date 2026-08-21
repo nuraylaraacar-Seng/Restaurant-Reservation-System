@@ -21,7 +21,6 @@ public class SecurityUtils {
                     } catch (NumberFormatException ignored) {}
                 }
 
-                // Eğer JWT claim içine "userId" veya "id" olarak koyduysan:
                 Object userIdClaim = jwt.getClaim("userId");
                 if (userIdClaim == null) {
                     userIdClaim = jwt.getClaim("id");
